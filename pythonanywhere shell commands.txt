@@ -1,0 +1,13 @@
+18:59 ~ $ git clone "https://github.com/phaden/CommSoft.git"
+
+19:20 ~/CommSoft/PlantsJson (master)$ virtualenv django19 --python=/usr/bin/python3.5
+
+19:22 ~/CommSoft/PlantsJson (master)$ source django19/bin/activate
+
+(django19) 19:23 ~/CommSoft/PlantsJson (master)$ pip install django~=1.9.8
+
+(django19) 19:28 ~/CommSoft/PlantsJson (master)$ pip install djangorestframework
+
+(django19) 19:30 ~/CommSoft/PlantsJson (master)$ python manage.py migrate
+
+

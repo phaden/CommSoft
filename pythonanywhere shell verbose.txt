@@ -1,0 +1,38 @@
+18:59 ~ $ git clone "https://github.com/phaden/CommSoft.git"
+Cloning into 'CommSoft'...
+remote: Counting objects: 53, done.
+remote: Compressing objects: 100% (46/46), done.
+remote: Total 53 (delta 5), reused 50 (delta 5), pack-reused 0
+Unpacking objects: 100% (53/53), done.
+Checking connectivity... done.
+18:59 ~ $ tree
+...
+7 directories, 44 files
+19:01 ~ $ cd CommSoft
+19:01 ~/CommSoft (master)$ tree
+...
+19:20 ~/CommSoft/PlantsJson (master)$ virtualenv django19 --python=/usr/bin/python3.5
+Running virtualenv with interpreter /usr/bin/python3.5
+Using base prefix '/usr'
+New python executable in /home/phaden/CommSoft/PlantsJson/django19/bin/python3.5
+Also creating executable in /home/phaden/CommSoft/PlantsJson/django19/bin/python
+Installing setuptools, pip, wheel...done.
+...
+19:22 ~/CommSoft/PlantsJson (master)$ source django19/bin/activate
+(django19) 19:23 ~/CommSoft/PlantsJson (master)$ pip install django~=1.9.8
+Collecting django~=1.9.8
+  Downloading Django-1.9.12-py2.py3-none-any.whl (6.6MB)
+    100% |████████████████████████████████| 6.6MB 159kB/s 
+Installing collected packages: django
+Successfully installed django-1.9.12
+...
+(django19) 19:28 ~/CommSoft/PlantsJson (master)$ pip install djangorestframework
+Collecting djangorestframework
+  Downloading djangorestframework-3.6.2-py2.py3-none-any.whl (1.3MB)
+    100% |████████████████████████████████| 1.3MB 796kB/s 
+Installing collected packages: djangorestframework
+Successfully installed djangorestframework-3.6.2
+...
+(django19) 19:30 ~/CommSoft/PlantsJson (master)$ python manage.py migrate
+
+
