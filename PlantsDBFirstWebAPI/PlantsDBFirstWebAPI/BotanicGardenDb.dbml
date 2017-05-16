@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DataSource" Class="BotanicGardenDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=bitdev.ict.op.ac.nz;User ID=phaden" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DataSourceConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblPlant" Member="tblPlants">
+    <Type Name="tblPlant">
+      <Column Name="plantID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="speciesID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="collectionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="latitude" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="longitude" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="plantDescription" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="recordCreated" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="recordModified" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="tblSpecy_tblPlant" Member="tblSpecy" ThisKey="speciesID" OtherKey="speciesID" Type="tblSpecy" IsForeignKey="true" />
+      <Association Name="tblCollection_tblPlant" Member="tblCollection" ThisKey="collectionID" OtherKey="collectionID" Type="tblCollection" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblSpecies" Member="tblSpecies">
+    <Type Name="tblSpecy">
+      <Column Name="speciesID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="commonName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="scientificName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="speciesDescription" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="imgResourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblSpecy_tblPlant" Member="tblPlants" ThisKey="speciesID" OtherKey="speciesID" Type="tblPlant" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCollection" Member="tblCollections">
+    <Type Name="tblCollection">
+      <Column Name="collectionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="collectionName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="collectionDescription" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="tblCollection_tblPlant" Member="tblPlants" ThisKey="collectionID" OtherKey="collectionID" Type="tblPlant" />
+    </Type>
+  </Table>
+</Database>
