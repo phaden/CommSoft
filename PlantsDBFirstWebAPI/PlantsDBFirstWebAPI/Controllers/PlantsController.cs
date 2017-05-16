@@ -20,10 +20,21 @@ namespace PlantsDBFirstWebAPI.Controllers
         }
 
         // GET: api/Plants
-        public IEnumerable<string> Get()
+        public IEnumerable<FullPlant> Get()
         {
+            List<FullPlant> fullPlantList = new List<Models.FullPlant>();
 
-            return new string[] { "value1", "value2" };
+            var joinRecords = from p in BotanicGardenDB.tblPlants
+                              join s in BotanicGardenDB.tblSpecies
+                              on p.speciesID equals s.speciesID
+                              select new { plantID = p.plantID, plantDescription = p.plantDescription, commonName = s.commonName, scientificName = s.scientificName };
+            foreach(var r in joinRecords)
+            {
+                FullPlant fp = new FullPlant(r.plantID, r.plantDescription, r.commonName, r.scientificName);
+                fullPlantList.Add(fp); 
+            }
+
+            return fullPlantList;
         }
 
         // GET: api/Plants/5
@@ -43,10 +54,7 @@ namespace PlantsDBFirstWebAPI.Controllers
             string speciesCommonName = currentPlantSpecies.commonName;
             string speciesScientificName = currentPlantSpecies.scientificName;
 
-            FullPlant outputPlantData = new FullPlant { PlantID = plantID,
-                PlantDescription = plantDescription,
-                SpeciesCommonName = speciesCommonName,
-                SpeciesScientificName = speciesScientificName };
+            FullPlant outputPlantData = new FullPlant(plantID,plantDescription,speciesCommonName,speciesScientificName);
 
             return outputPlantData;
         }

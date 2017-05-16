@@ -12,6 +12,14 @@ namespace PlantsDBFirstWebAPI.Models
         public String PlantDescription { get; set; }
         public String SpeciesCommonName { get; set; }
         public String SpeciesScientificName { get; set; }
+
+        public FullPlant(int plantID, string plantDescription, string speciesCommonName, string speciesScientificName)
+        {
+            PlantID = plantID;
+            PlantDescription = plantDescription;
+            SpeciesCommonName = speciesCommonName;
+            SpeciesScientificName = speciesScientificName;
+        }
       
     }
 }
