@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlantsDBFirstWebAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -26,7 +27,7 @@ namespace PlantsDBFirstWebAPI.Controllers
         }
 
         // GET: api/Plants/5
-        public string Get(int id)
+        public FullPlant Get(int id)
         {
             var allPlants = BotanicGardenDB.tblPlants;
             var allSpecies = BotanicGardenDB.tblSpecies;
@@ -42,7 +43,12 @@ namespace PlantsDBFirstWebAPI.Controllers
             string speciesCommonName = currentPlantSpecies.commonName;
             string speciesScientificName = currentPlantSpecies.scientificName;
 
-            return plantID.ToString() + "," + plantDescription + ", " + speciesCommonName + ", " + speciesScientificName;
+            FullPlant outputPlantData = new FullPlant { PlantID = plantID,
+                PlantDescription = plantDescription,
+                SpeciesCommonName = speciesCommonName,
+                SpeciesScientificName = speciesScientificName };
+
+            return outputPlantData;
         }
 
         // POST: api/Plants

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlantsDBFirstWebAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -20,14 +21,24 @@ namespace PlantsDBFirstWebAPI.Controllers
 
 
         // GET: api/Collections
-        public IEnumerable<string> Get()
+        public IEnumerable<CollectionViewModel> Get()
         {
-            List<String> collectionNames = new List<string>();
+            List<CollectionViewModel> collectionViews = new List<CollectionViewModel>();
             foreach(var collection in BotanicGardenDB.tblCollections)
             {
-                collectionNames.Add(collection.collectionName);
+                int id = collection.collectionID;
+                string name = collection.collectionName;
+                string description = collection.collectionDescription;
+                List < tblPlant > collectionPlants = collection.tblPlants.ToList();
+
+                List<int> plantIDs = new List<int>();
+                foreach (tblPlant p in collectionPlants)
+                    plantIDs.Add(p.plantID);
+
+                CollectionViewModel cvm = new CollectionViewModel(id, name, description, plantIDs);
+                collectionViews.Add(cvm);
             }
-            return collectionNames;
+            return collectionViews;
         }
 
         // GET: api/Collections/5
